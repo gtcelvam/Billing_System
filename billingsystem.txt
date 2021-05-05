@@ -1,0 +1,48 @@
+--Grocery Store Billing System--
+
+Main Thing 
+Create Invoice
+Fetch User data from API for Invoice
+
+To do 
+Take items bought from inputs
+Don't accept alphabetic inputs for quantity
+
+
+Steps :
+Input Box
+storing data using useState
+Mapping 
+Display data
+Adding the count and displaying it
+button for Invoice route
+
+
+label 
+input
+rgb(86, 135, 241)
+
+invoice
+username
+user-detail
+user-profile
+
+#F4ECF7 
+
+<UserItems value={items}>
+            <TotalAmount value={amount}></TotalAmount>
+</TotalAmount>
+            </UserItems>
+
+Things we need
+createContext - in cart.js
+UserData = createContext()
+UserDataProvider = ({data})=>{
+	useState()
+} 
+
+export {UserData,UserDataProvider}
+
+import UserDataProvider in Index.js
+
+import UserData in invoice.js
