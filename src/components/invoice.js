@@ -9,11 +9,11 @@ import "./cart.css"
 function Invoice() {
     const data = useContext(UserContext);
     const {amount,items} = data
-    console.log(items);
     const [user, setUser] = useState([]);
     useEffect(async () => {
         const result = await Axios.get("https://api.randomuser.me/")
-        await setUser(result.data.results)
+        await setUser(result.data.results);
+        document.title = "Invoice"
     }, []);
     var cartItems = items.map((item,index)=>{
         return(
@@ -23,7 +23,8 @@ function Invoice() {
     const invoice = user.map((item) => {
         return (
             <div key="1" className="main">
-                <div className="invoice">
+                    <h1 style={{backgroundColor:"rgb(86, 135, 241)",color: "white"}}>TS Shop- Invoice</h1>
+                    <div className="invoice">
                     <div className="user-detail">
                         <p><span>Username : </span>{item.login.username}</p>
                         <p><span>Gender : </span>{item.gender}</p>
