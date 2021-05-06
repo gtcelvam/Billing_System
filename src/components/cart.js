@@ -16,6 +16,11 @@ var data ={
 function Cart() {
     const [amount, setAmount] = useState(0);
     const [items, setItems] = useState([]);
+    const [warning, setWarning] = useState(false);
+    var warStyle = {
+        color : "red",
+        display : "block"
+    }
     var cartItems = items.map((item, index) => {
         return (
             <CartList key={index} index={index} item={item} />
@@ -23,15 +28,26 @@ function Cart() {
     });
     useEffect(() => {
         handleTotal();
+        setInterval(()=>{
+            setWarning(false)
+        },2000)
     }, [items]);
     var handleSubmit = (e) => {
         e.preventDefault();
-        setItems([...items, selectedItems]);
-        selectedItems = {
-            name: "",
-            quantity: "",
-            price: ""
+        var name = document.getElementById("name").value
+        var quantity = document.getElementById("quantity").value
+        var price = document.getElementById("price").value
+        if(name===""||(quantity === "" || price === "")){
+            setWarning(true);
+        }else{
+            setItems([...items, selectedItems]);
+            selectedItems = {
+                name: "",
+                quantity: "",
+                price: ""
+            }
         }
+        console.log(warning);
         document.getElementById("name").value = selectedItems.name;
         document.getElementById("quantity").value = selectedItems.quantity;
         document.getElementById("price").value = selectedItems.price;
@@ -60,6 +76,7 @@ function Cart() {
                 <input id="price" type="number" onChange={e => selectedItems.price = e.target.value} />
                 <button onClick={handleSubmit}>Add</button>
             </form>
+            <h1 className="alert" style={warning === true ? warStyle : {display : "none"}}>Please add proper value</h1>
             <div style={items.length === 0 ? { display: "none" } : null} className="cardlist">
 
                 <table>
